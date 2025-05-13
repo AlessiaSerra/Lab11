@@ -11,11 +11,22 @@ class Controller:
         self._listColor = []
 
     def fillDD(self):
-        pass
+        for a in range(2015,2019):
+            self._view._ddyear.options.append(ft.dropdown.Option(a))
+
+        colori = self._model.getColori()
+
+        self._view._ddcolor.options.append(ft.dropdown.Option("Unspecified"))
+
+        for colour in colori:
+            self._view._ddcolor.options.append(ft.dropdown.Option(colour))
+
 
 
     def handle_graph(self, e):
-        pass
+        self._model.createGraph(self._view._ddcolor.value, self._view._ddyear.value)
+        self._view.btn_search.disabled = False
+
 
 
 
