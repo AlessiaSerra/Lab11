@@ -13,10 +13,10 @@ class Prodotto():
     Unit_price : float
 
     def __str__(self):
-        return f"{self.product} --- {self.unit_price}"
+        return f"{self.Product_number}"
 
     def __hash__(self):
-        return hash(self.product_number)
+        return hash(self.Product_number)
 
-    def _eq__(self, p2):
-        return self.product_number == p2.product_number
+    def __eq__(self, p2):
+        return self.Product_number == p2

@@ -21,12 +21,23 @@ class Controller:
         for colour in colori:
             self._view._ddcolor.options.append(ft.dropdown.Option(colour))
 
+        self._view.update_page()
+
 
 
     def handle_graph(self, e):
-        self._model.createGraph(self._view._ddcolor.value, self._view._ddyear.value)
+        (num_nodi, num_archi) = self._model.createGraph(self._view._ddcolor.value, self._view._ddyear.value)
         self._view.btn_search.disabled = False
 
+        self._view.txtOut.controls.append(ft.Text(f"Numero di vertici {num_nodi}  Numero di archi {num_archi}"))
+        top3archi = self._model.getTop3()
+        for arco in top3archi:
+            self._view.txtOut.controls.append(ft.Text(f"Arco da {arco[0]}  a  {arco[1]}   Peso: {arco[2]['weight']}"))
+
+        ripetuti =  self._model.getNodiRipetuti(top3archi)
+        self._view.txtOut.controls.append(ft.Text(f"I nodi ripetuti sono: {ripetuti}"))
+
+        self._view.update_page()
 
 
 

@@ -3,7 +3,6 @@ from dataclasses import dataclass
 
 @dataclass
 class Sale():
-
     Retailer_code : int
     Product_number: int
     Order_method_code: int
